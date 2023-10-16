@@ -8,7 +8,8 @@ const Game = {
 		JUMP: 'Space',
 		SHOT: 'KeyD',
 		RIGHT: 'ArrowRight',
-		LEFT: 'ArrowLeft'
+		LEFT: 'ArrowLeft',
+		UP: 'ArrowUp'
 	},
 	init: function () {
 		const canvas = document.querySelector('canvas')
