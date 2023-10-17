@@ -1,35 +1,59 @@
 class Bullet {
-	constructor(ctx, x, playerY0, playerY, playerH) {
+	constructor(ctx, canvasW, canvasH) {
 		this.ctx = ctx
+		this.canvasW = canvasW
+		this.canvasH = canvasH
 
-		this.radius = 5
-		this.x = x
-		this.y = playerY + playerH / 2
+		this.img = new Image()
+		this.img.src = 'assets/fuego.png'
 
-		this.floor = playerY0 + playerH
+		this.img.frameIndex = 0
+		this.img.frames = 1
+
+		this.frameCounter = 0
+
+		this.x = canvasW * 0.9
+		this.y0 = canvasH * 0.9
+
+		this.y = this.y0
+
+		this.w = 300
+		this.h = 300
+		
+
 
 		this.vx = 10
 		this.vy = -5
 	}
 
-	draw() {
-		this.ctx.beginPath()
-		this.ctx.fillStyle = 'red'
-		this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-		this.ctx.fill()
-		this.ctx.closePath()
+	draw(frameCounter) {
+
+		this.ctx.drawImage(
+		this.img,
+		this.img.frameIndex * (this.img.width / this.img.frames), // sx
+			0, //sy
+			this.img.width / this.img.frames, //swidth
+			this.img.height, //sheight
+			this.x, //dx
+			this.y, //dy
+			this.w, //dwidth
+			this.h //dweight
+			)
+			this.animateSprite(frameCounter)
 	}
 
 	move() {
-		const gravity = 0.45
-
-		if (this.y + this.vy + this.radius >= this.floor) {
-			this.vy *= -1
-		}
-
-		this.vy += gravity
-
+		
 		this.x += this.vx
-		this.y += this.vy
+		
 	}
-}
+
+	animateSprite(frameCounter) {
+		if (frameCounter % 1 === 0) {
+			this.img.frameIndex++
+		
+			if (this.img.frameIndex >= this.img.frames) {
+				this.img.frameIndex = 0
+			}
+			
+}}}

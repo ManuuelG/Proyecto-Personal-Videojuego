@@ -6,7 +6,7 @@ const Game = {
 	fps: 60,
 	keys: {
 		JUMP: 'Space',
-		SHOT: 'KeyD',
+		SHOT: 'KeyX',
 		RIGHT: 'ArrowRight',
 		LEFT: 'ArrowLeft',
 		UP: 'ArrowUp'
