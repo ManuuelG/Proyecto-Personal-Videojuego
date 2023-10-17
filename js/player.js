@@ -12,7 +12,6 @@ class Player {
 		this.img.frameIndex = 0
 		this.img.frames = 5
 
-		
 
 		this.x = canvasW * 0.05
 		this.y0 = canvasH * 0.7
@@ -26,6 +25,8 @@ class Player {
 		this.h = 190
 
 		this.bullets = []
+
+		this.bullets2 = []
 
 		this.actions = {
 			jump: false,
@@ -72,6 +73,7 @@ class Player {
 					this.actions.up = true
 					this.img.src = 'assets/up.png'
 					this.img.frames = 6
+					this.shot2()
 
 					break
 
@@ -130,8 +132,13 @@ class Player {
 		this.animateSprite(frameCounter)
 
 		this.bullets.forEach((bullet) => {
-			bullet.draw()
+			bullet.draw(frameCounter)
 			bullet.move()
+		})
+
+		this.bullets2.forEach((bullet2) => {
+			bullet2.draw(frameCounter)
+			bullet2.move()
 		})
 		}
 
@@ -139,6 +146,15 @@ class Player {
 			this.bullets.push(
 				new Bullet(this.ctx, this.x + this.w, this.y0, this.y, this.h)
 			)
+			console.log (new Bullet)
+		}
+
+		shot2() {
+			this.bullets2.push(
+				new bullet2(this.ctx, this.x + this.w, this.y0, this.y, this.h)
+				
+			)
+			console.log (new bullet2)
 		}
 	
 

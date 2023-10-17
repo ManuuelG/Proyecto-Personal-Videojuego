@@ -75,9 +75,9 @@ const Game = {
 	drawAll() {
 		this.background.draw()
 
-		this.obstacles.forEach((obstacle) => {
-			obstacle.draw()
-		})
+		// this.obstacles.forEach((obstacle) => {
+		// 	// obstacle.draw()
+		// })
 
 		this.scoreboard.update(this.score)
 
@@ -86,9 +86,9 @@ const Game = {
 
 	moveAll() {
 		//this.background.move()
-		this.obstacles.forEach((obstacle) => {
-			//obstacle.move()
-		})
+		// this.obstacles.forEach((obstacle) => {
+			// obstacle.move()
+		// })
 		this.player.move()
 	},
 
