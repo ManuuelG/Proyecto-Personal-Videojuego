@@ -13,7 +13,7 @@ class Player {
 		this.img.frames = 5
 
 
-		this.x = canvasW * 0.05
+		this.playerx = canvasW * 0.05
 		this.y0 = canvasH * 0.7
 
 		this.y = this.y0
@@ -23,6 +23,7 @@ class Player {
 		this.vx = 1
 		this.w = 190
 		this.h = 190
+
 
 		this.bullets = []
 
@@ -123,7 +124,7 @@ class Player {
 			0, //sy
 			this.img.width / this.img.frames, //swidth
 			this.img.height, //sheight
-			this.x, //dx
+			this.playerx, //dx
 			this.y, //dy
 			this.w, //dwidth
 			this.h //dweight
@@ -144,14 +145,14 @@ class Player {
 
 		shot() {
 			this.bullets.push(
-				new Bullet(this.ctx, this.x + this.w, this.y0, this.y, this.h)
+				new Bullet(this.ctx, this.playerx + this.w, this.y0, this.y, this.h)
 			)
 			console.log (new Bullet)
 		}
 
 		shot2() {
 			this.bullets2.push(
-				new bullet2(this.ctx, this.x + this.w, this.y0, this.y, this.h)
+				new bullet2(this.ctx, this.playerx + this.w, this.y0, this.y, this.h)
 				
 			)
 			console.log (new bullet2)
@@ -184,18 +185,21 @@ class Player {
 		this.y += this.vy
 
 		if (this.actions.right) {
-			this.x += this.vx + 2
-			if (this.x + this.w > this.canvasW) {
-				this.x = this.canvasW - this.w
+			this.playerx += this.vx + 2
+			if (this.playerx + this.w > this.canvasW) {
+				this.playerx = this.canvasW - this.w
 			}
+			this.bullet2.x += this.playerx
 		}
 
 		if (this.actions.left) {
-			this.x -= this.vx + 2
-			if (this.x < 0) {
-				this.x = 0
+			this.playerx -= this.vx + 2
+			if (this.playerx < 0) {
+				this.playerx = 0
 			}
 		}
+		
+	
 
 	}
 }

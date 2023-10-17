@@ -13,10 +13,12 @@ class bullet2 {
 
 
 		this.x = canvasW * 0.6
-		this.y = canvasH * 0.8
+		this.y = canvasH * 0.9
 
 		this.w = 79
 		this.h = 94
+
+        
 		
 
 
@@ -43,10 +45,10 @@ class bullet2 {
 	}
 
 	move() {
-	
         this.y += this.vy
-        this.x += this.vx
-		
+        this.x += this.vx 
+        
+        
 		
 		
 	}
