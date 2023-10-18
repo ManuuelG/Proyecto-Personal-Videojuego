@@ -6,7 +6,7 @@ class Background {
 
 		this.img = new Image()
 		this.x = 0
-		this.dx = 10
+		this.dx = 1
 
 		this.img.src = 'assets/background.png'
 	}

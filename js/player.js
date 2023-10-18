@@ -185,11 +185,25 @@ class Player {
 		}
 
 		if (this.actions.left) {
-			this.x -= this.vx + 2
+			this.x -= this.vx + 4
 			if (this.x < 0) {
 				this.x = 0
 			}
 		}
+
+		// const mitadCanvas = this.canvasW / 2 - this.w / 2;
+		// if (this.x >= mitadCanvas && this.x <= mitadCanvas + 5) {
+		// 	this.actions.right = false;
+		// 	this.x = mitadCanvas; 
+		// }
 		
 	}
+
+	// moveBackground(background) {
+    //     const mitadCanvas = this.canvasW / 2 - this.w / 2;
+
+    //     if (this.x > mitadCanvas && this.x < mitadCanvas + 5) {
+    //         background.move(-this.vx - 2);
+    //     }
+	// }
 }

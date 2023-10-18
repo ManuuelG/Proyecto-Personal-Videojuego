@@ -1,4 +1,4 @@
-class Obstacle {
+class Enemy {
 	constructor(ctx, canvasW, playerY, playerH) {
 		this.ctx = ctx
 		this.canvasW = canvasW
@@ -15,7 +15,7 @@ class Obstacle {
 		this.x = canvasW
 		this.y = playerY + playerH - this.h - 20
 
-		this.dx = 10
+		this.dx = 6
 	}
 
 	draw(frameCounter) {
@@ -35,6 +35,15 @@ class Obstacle {
 
 	move() {
 		this.x -= this.dx
+	}
+
+	attack() {
+		this.img.src = 'assets/melee2.png'
+		this.img.frameIndex = 0
+		this.img.frames = 4
+		
+
+		
 	}
 
 	animateSprite(frameCounter) {
