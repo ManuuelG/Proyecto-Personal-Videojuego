@@ -20,6 +20,8 @@ const Game = {
 
 
 
+
+
 		this.reset()
 	},
 
@@ -49,7 +51,7 @@ const Game = {
 			this.frameCounter++
 
 			this.score += 0.03
-			
+			// this.bso.playbackRate += 0.001
 			// Se genera obstáculo cada x frames
 			if (this.frameCounter % 50 === 0) {
 				this.generateObstacle()

@@ -18,12 +18,14 @@ class Player {
 		this.y = this.y0
 
 		this.vx = 1
+		this.vy = 1
 		
 
 		this.w = 150
 		this.h = 190
 
 		this.bullets = []
+		this.bullets2 = []
 
 		this.actions = {
 			jump: false,
@@ -52,7 +54,7 @@ class Player {
 					this.actions.right = true
 					this.img.src = 'assets/palante.png'
 					this.img.frames = 5
-					
+				
 					
 								
 					break
@@ -68,6 +70,7 @@ class Player {
 					this.actions.up = true
 					this.img.src = 'assets/up.png'
 					this.img.frames = 6
+					this.shot2()
 					
 
 					break
@@ -127,19 +130,28 @@ class Player {
 
 		this.animateSprite(frameCounter)
 
-		this.bullets = this.bullets.filter(
-			(bullet) => bullet.x - bullet.radius < this.canvasW
-		)
+
 
 		this.bullets.forEach((bullet) => {
-			bullet.draw()
+			bullet.draw(frameCounter)
 			bullet.move()
+		})
+
+		this.bullets2.forEach((Bullet2) => {
+			Bullet2.draw(frameCounter)
+			Bullet2.move()
 		})
 	}
 
 	shot() {
 		this.bullets.push(
-			new Bullet(this.ctx, this.x + this.w, this.y0, this.y, this.h)
+			new Bullet(this.ctx, this.x + this.w, this.y0 + 60, this.y, this.h)
+		)
+	}
+
+	shot2() {
+		this.bullets2.push(
+			new Bullet2(this.ctx, this.x + this.w / 2, this.y0, this.y, this.h)
 		)
 	}
 
@@ -166,16 +178,16 @@ class Player {
 		this.y += this.vy
 
 		if (this.actions.right) {
-			this.playerx += this.vx + 2
-			// if (this.playerx + this.w > this.canvasW) {
-			// 	this.playerx = this.canvasW - this.w
-			// }
+			this.x += this.vx + 2
+			if (this.x + this.w > this.canvasW) {
+				this.x = this.canvasW - this.w
+			}
 		}
 
 		if (this.actions.left) {
-			this.playerx -= this.vx + 2
-			if (this.playerx < 0) {
-				this.playerx = 0
+			this.x -= this.vx + 2
+			if (this.x < 0) {
+				this.x = 0
 			}
 		}
 		
