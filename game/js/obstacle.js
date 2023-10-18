@@ -1,22 +1,21 @@
 class Obstacle {
-	constructor(ctx, canvasW, canvasH) {
+	constructor(ctx, canvasW, playerY, playerH) {
 		this.ctx = ctx
 		this.canvasW = canvasW
-		this.canvasH = canvasH
 
 		this.img = new Image()
-		this.img.src = "assets/enemigo.png"
+		this.img.src = "assets/enemy_walk.png"
 
-		this.w = 200
-		this.h = 200
+		this.w = 100
+		this.h = 140
 
 		this.img.frameIndex = 0
-		this.img.frames = 9
+		this.img.frames = 7
 
 		this.x = canvasW
-		this.y = canvasH - this.h
+		this.y = playerY + playerH - this.h - 20
 
-		this.dx = 5
+		this.dx = 10
 	}
 
 	draw(frameCounter) {

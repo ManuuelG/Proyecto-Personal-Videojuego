@@ -18,9 +18,7 @@ const Game = {
 		this.canvasW = canvas.width = innerWidth
 		this.canvasH = canvas.height = innerHeight
 
-		this.bso = new Audio('./assets/bso.mp3')
 
-		//this.bso.play()
 
 		this.reset()
 	},
@@ -41,7 +39,7 @@ const Game = {
 	},
 
 	start: function () {
-		
+		// loop de render
 
 		this.frameCounter = 0
 
@@ -51,7 +49,7 @@ const Game = {
 			this.frameCounter++
 
 			this.score += 0.03
-			// this.bso.playbackRate += 0.001
+			
 			// Se genera obstáculo cada x frames
 			if (this.frameCounter % 50 === 0) {
 				this.generateObstacle()
@@ -63,7 +61,8 @@ const Game = {
 			// se pasa el frameCounter al método draw para animar el sprite cada x frames
 
 			if (this.isCollision()) {
-				 //this.gameOver()
+				// this.gameOver()
+				console.log('colision')
 			}
 
 			this.clearObstacles()
@@ -75,9 +74,9 @@ const Game = {
 	drawAll() {
 		this.background.draw()
 
-		// this.obstacles.forEach((obstacle) => {
-		// 	// obstacle.draw()
-		// })
+		this.obstacles.forEach((obstacle) => {
+			obstacle.draw(this.frameCounter)
+		})
 
 		this.scoreboard.update(this.score)
 
@@ -85,10 +84,10 @@ const Game = {
 	},
 
 	moveAll() {
-		//this.background.move()
-		// this.obstacles.forEach((obstacle) => {
-			// obstacle.move()
-		// })
+		// this.background.move()
+		this.obstacles.forEach((obstacle) => {
+			obstacle.move()
+		})
 		this.player.move()
 	},
 
@@ -110,7 +109,7 @@ const Game = {
 	isCollision: function () {
 		return this.obstacles.some(
 			(obstacle) =>
-				obstacle.x + 10 < this.player.x + this.player.w &&
+				obstacle.x + 60 < this.player.x + this.player.w &&
 				obstacle.x + obstacle.w > this.player.x &&
 				obstacle.y + obstacle.h > this.player.y &&
 				obstacle.y < this.player.y + this.player.h
