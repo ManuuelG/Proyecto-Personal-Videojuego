@@ -199,6 +199,12 @@ class Player {
 		
 	}
 
+	die() {
+		this.img.src = 'assets/player_die.png'
+		this.img.frameIndex = 0
+		this.img.frames = 17
+	}
+
 	// moveBackground(background) {
     //     const mitadCanvas = this.canvasW / 2 - this.w / 2;
 

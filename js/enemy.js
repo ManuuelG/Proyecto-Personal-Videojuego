@@ -15,7 +15,7 @@ class Enemy {
 		this.x = canvasW
 		this.y = playerY + playerH - this.h - 20
 
-		this.dx = 6
+		this.dx = 4
 	}
 
 	draw(frameCounter) {
@@ -35,6 +35,7 @@ class Enemy {
 
 	move() {
 		this.x -= this.dx
+
 	}
 
 	attack() {

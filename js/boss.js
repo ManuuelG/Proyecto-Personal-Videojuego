@@ -15,7 +15,7 @@ class Boss {
 		this.x = canvasW
 		this.y = playerY + playerH - this.h
 
-		this.dx = 6
+		this.dx = 5
 	}
 
 	draw(frameCounter) {
@@ -35,7 +35,7 @@ class Boss {
 
 	move() {
 
-		if (this.x >= 0) 
+		if (this.x >= 1) 
 		{this.x -= this.dx}
 		
 

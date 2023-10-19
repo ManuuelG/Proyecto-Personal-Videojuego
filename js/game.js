@@ -29,7 +29,6 @@ const Game = {
 		this.boss = new Boss(this.ctx, this.canvasW, (this.canvasH - this.player.y0) - 150, this.player.h)
 		this.enemies = []
 
-	
 
 		this.start()
 	},
@@ -45,21 +44,32 @@ const Game = {
 			this.frameCounter++
 
 			
-			if (this.frameCounter % 50 === 0) {
+			if (this.frameCounter % 100 === 0) {
 				this.generateEnemy()	
 			}
 
-			if (this.frameCounter % 30 === 0) {
+			if (this.frameCounter % 50 === 0) {
 				this.boss.move()	
 			}
 
 			this.drawAll()
 			this.moveAll()
 
-			// if (this.isCollision()) {
-			// 	// this.gameOver()
-			// 	console.log('colision')
-			// }
+			if (this.Collision()) {
+				
+			}
+
+			
+
+			if (this.Collision2()) {
+				
+			}
+
+			if (this.Collision3()) {
+				
+				this.Winner()
+			}
+
 
 			this.clearEnemies()
 
@@ -70,33 +80,11 @@ const Game = {
 	drawAll() {
 		this.background.draw()
 		this.boss.draw(this.frameCounter)
-
-		this.enemies.forEach((enemy) => {
-			enemy.draw(this.frameCounter)
-			if(
-				this.enemies.some((enemy) => {
-					const isCollision =
-					enemy.x + 10 < this.player.x + this.player.w &&
-					enemy.x + enemy.w > this.player.x &&
-					enemy.y + enemy.h > this.player.y &&
-					enemy.y < this.player.y + this.player.h
-
-					if (isCollision) {
-						enemy.attack()
-						
-					}
-
-					return isCollision
-				})
-			)
-
-			console.log('Colision')
-		})
-		
-
-
 		this.player.draw(this.frameCounter)
-	},
+		this.enemies.forEach((enemy) => {
+			enemy.draw(this.frameCounter)	
+	})
+},
 
 	moveAll() {
 		// this.background.move()
@@ -105,15 +93,22 @@ const Game = {
 		})
 		
 		this.player.move()
-		// this.boss.move() 
+		this.boss.move() 
 		// this.player.movebackground()
 	},
 
 	gameOver: function () {
-		// para el intervalo que implementa el loop de animación
 		clearInterval(this.intervalId)
 
 		if (confirm('GAME OVER! ¿Volver a jugar?')) {
+			this.reset()
+		}
+	},
+
+	Winner: function () {
+		clearInterval(this.intervalId)
+
+		if (confirm('YOU ARE A BEAST!')) {
 			this.reset()
 		}
 	},
@@ -124,17 +119,74 @@ const Game = {
 		)
 	},
 
+	Collision: function () {
+		return this.enemies.some(
+			(enemy) =>
+				{
+				
+				const Collision = enemy.x + 20 < this.player.x + this.player.w &&
+				enemy.x + enemy.w > this.player.x &&
+				enemy.y + enemy.h > this.player.y &&
+				enemy.y < this.player.y + this.player.h
+
+				if (Collision) {
+			    enemy.attack()
+				this.player.die()
+				}
+
+			
+				
+			
+				
+				//declaro una variable
+				//la someto a una condicion
+				//devuelvo la variable con return
+				//Como en collision2 que esta perfe
+				
+				
+				
+				
+					return Collision
+			
+			}
+				
+			 
+		)
+
+	},
 
 
-	// isCollision: function () {
-	// 	return this.enemies.some(
-	// 		(enemy) =>
-	// 			enemy.x + 60 < this.player.x + this.player.w &&
-	// 			enemy.x + enemy.w > this.player.x &&
-	// 			enemy.y + enemy.h > this.player.y &&
-	// 			enemy.y < this.player.y + this.player.h
-	// 	)
-	// },
+
+	Collision2: function () {
+		return this.enemies.some((enemy) => this.player.bullets.some((bullet) => {
+				
+			const Collision = enemy.x  < bullet.x + bullet.w
+				enemy.x + enemy.w > bullet.x 
+				enemy.y + enemy.h > bullet.y 
+				enemy.y < bullet.y + bullet.h
+
+				if (Collision) {
+					this.enemies = this.enemies.filter((e) => e !== enemy)
+					this.player.bullets = this.player.bullets.filter((b) => b !== bullet)
+					
+				}
+
+				return Collision
+			}
+			)
+
+			
+		)},
+
+		Collision3: function () {
+			return this.player.bullets2.some(
+				(bullets2) =>
+					bullets2.x + 10 < this.boss.x + this.boss.w &&
+					bullets2.x + bullets2.w > this.boss.x &&
+					bullets2.y + bullets2.h > this.boss.y &&
+					bullets2.y < this.boss.y + this.boss.h
+			)},
+	
 
 	clearEnemies: function () {
 		this.enemies = this.enemies.filter(
@@ -144,5 +196,13 @@ const Game = {
 
 	clear: function () {
 		this.ctx.clearRect(0, 0, this.canvasW, this.canvasH)
-	},
+	}
+
+
+
+
+
+
+
+
 }
