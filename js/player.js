@@ -1,9 +1,10 @@
 class Player {
-	constructor(ctx, canvasW, canvasH, keys) {
+	constructor(ctx, canvasW, canvasH, keys, hit) {
 		this.ctx = ctx
 		this.canvasW = canvasW
 		this.canvasH = canvasH
 		this.keys = keys
+		this.hit = hit
 
 		this.img = new Image()
 		this.img.src = 'assets/quieto.png'
@@ -178,7 +179,7 @@ class Player {
 		this.y += this.vy
 
 		if (this.actions.right) {
-			this.x += this.vx + 2
+			this.x += this.vx + 4
 			if (this.x + this.w > this.canvasW) {
 				this.x = this.canvasW - this.w
 			}
@@ -194,7 +195,7 @@ class Player {
 		// const mitadCanvas = this.canvasW / 2 - this.w / 2;
 		// if (this.x >= mitadCanvas && this.x <= mitadCanvas + 5) {
 		// 	this.actions.right = false;
-		// 	this.x = mitadCanvas; 
+		// 	this.x = mitadCanvas;
 		// }
 		
 	}
@@ -204,12 +205,4 @@ class Player {
 		this.img.frameIndex = 0
 		this.img.frames = 17
 	}
-
-	// moveBackground(background) {
-    //     const mitadCanvas = this.canvasW / 2 - this.w / 2;
-
-    //     if (this.x > mitadCanvas && this.x < mitadCanvas + 5) {
-    //         background.move(-this.vx - 2);
-    //     }
-	// }
 }

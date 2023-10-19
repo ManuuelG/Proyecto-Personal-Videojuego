@@ -1,25 +1,25 @@
-class Bullet2 {
-	constructor(ctx, playerX, playerY) {
+class Bomb {
+	constructor(ctx, bossX, bossY) {
 		this.ctx = ctx
 
-		this.x = playerX
-		this.y = playerY
+		this.x = bossX
+		this.y = bossY
 
 		this.img = new Image()
-		this.img.src = 'assets/fuego3.png'
+		this.img.src = 'assets/boss_bombs.png'
 		
 
 		this.img.frameIndex = 0
-		this.img.frames = 4
+		this.img.frames = 10
 
 		
 
 
-		this.w = 70
-		this.h = 70
+		this.w = 50
+		this.h = 50
 
 		this.vx = 0
-		this.vy = -5
+		this.vy = 5
 	}
 
 	draw(frameCounter) {
@@ -34,7 +34,6 @@ class Bullet2 {
 			this.w, //dwidth
 			this.h //dweight
 			)
-			
 			
 			
 			this.animateSprite(frameCounter)

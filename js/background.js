@@ -23,10 +23,7 @@ class Background {
 	}
 
 	move() {
-		if (this.x <= -this.canvasW) {
-			this.x = 0
-		}
-
-		this.x -= this.dx
+		
+		this.x
 	}
 }

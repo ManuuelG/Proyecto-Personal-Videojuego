@@ -23,11 +23,12 @@ const Game = {
 
 	reset: function () {
 		console.log('RESET')
-
+		
 		this.background = new Background(this.ctx, this.canvasW, this.canvasH)
-		this.player = new Player(this.ctx, this.canvasW, this.canvasH, this.keys)
-		this.boss = new Boss(this.ctx, this.canvasW, (this.canvasH - this.player.y0) - 150, this.player.h)
+		this.player = new Player(this.ctx, this.canvasW, this.canvasH, this.keys, this.hit = 1)
+		this.boss = new Boss(this.ctx, this.canvasW, (this.canvasH - this.player.y0) - 150, this.player.h, this.life = 3, this.visible)
 		this.enemies = []
+		
 
 
 		this.start()
@@ -54,6 +55,7 @@ const Game = {
 
 			this.drawAll()
 			this.moveAll()
+			this.MoveBackground()
 
 			if (this.Collision()) {
 				
@@ -67,7 +69,7 @@ const Game = {
 
 			if (this.Collision3()) {
 				
-				this.Winner()
+				// this.Winner()
 			}
 
 
@@ -87,14 +89,14 @@ const Game = {
 },
 
 	moveAll() {
-		// this.background.move()
+		this.background.move()
 		this.enemies.forEach((enemy) => {
 			enemy.move()
 		})
 		
 		this.player.move()
 		this.boss.move() 
-		// this.player.movebackground()
+		
 	},
 
 	gameOver: function () {
@@ -133,26 +135,10 @@ const Game = {
 			    enemy.attack()
 				this.player.die()
 				}
-
-			
-				
-			
-				
-				//declaro una variable
-				//la someto a una condicion
-				//devuelvo la variable con return
-				//Como en collision2 que esta perfe
-				
-				
-				
 				
 					return Collision
 			
-			}
-				
-			 
-		)
-
+			})
 	},
 
 
@@ -174,18 +160,44 @@ const Game = {
 				return Collision
 			}
 			)
-
 			
 		)},
 
 		Collision3: function () {
 			return this.player.bullets2.some(
-				(bullets2) =>
+				(bullets2) => {
+					
+					const Collision =	
 					bullets2.x + 10 < this.boss.x + this.boss.w &&
 					bullets2.x + bullets2.w > this.boss.x &&
 					bullets2.y + bullets2.h > this.boss.y &&
 					bullets2.y < this.boss.y + this.boss.h
-			)},
+
+					if (Collision) {
+						this.player.bullets2 = this.player.bullets2.filter((b) => b !== bullets2)
+						this.boss.life -= this.player.hit
+						
+						
+					}
+
+					if (this.boss.life -= this.player.hit < 0) {
+						this.boss.defeat()
+					}
+				
+				return Collision
+				
+				})},
+
+		MoveBackground: function() {
+
+				
+					
+			if (this.player.x >= this.canvasW / 2) {
+			
+				this.background.x -= this.player.vx;
+			}
+					
+				},
 	
 
 	clearEnemies: function () {
