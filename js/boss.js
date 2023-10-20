@@ -45,14 +45,14 @@ class Boss {
 				this.bombs.forEach((bomb) => {
 					bomb.draw(frameCounter)
 					bomb.move()
-					console.log(bomb.draw)
+				
 				}
 				)
 				
 
 				if (Math.random() < 0.01) {
 					this.drop(); 
-					console.log(this.drop)
+					
 				  }
 
 				  const currentTime = Date.now();
@@ -67,6 +67,10 @@ class Boss {
 
 		if (this.x >= 1) 
 		{this.x -= this.dx}
+
+		if (this.x < this.canvasW / 2) {
+			this.dx = 0
+		}
 		
 
 	}

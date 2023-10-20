@@ -179,14 +179,14 @@ class Player {
 		this.y += this.vy
 
 		if (this.actions.right) {
-			this.x += this.vx + 4
+			this.x += this.vx + 10
 			if (this.x + this.w > this.canvasW) {
 				this.x = this.canvasW - this.w
 			}
 		}
 
 		if (this.actions.left) {
-			this.x -= this.vx + 4
+			this.x -= this.vx + 10
 			if (this.x < 0) {
 				this.x = 0
 			}

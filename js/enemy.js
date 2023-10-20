@@ -42,6 +42,8 @@ class Enemy {
 		this.img.src = 'assets/melee2.png'
 		this.img.frameIndex = 0
 		this.img.frames = 4
+		this.w = 100
+		this.h = 140
 		
 
 		

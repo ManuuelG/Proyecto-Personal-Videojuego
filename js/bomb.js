@@ -2,8 +2,8 @@ class Bomb {
 	constructor(ctx, bossX, bossY) {
 		this.ctx = ctx
 
-		this.x = bossX
-		this.y = bossY
+		this.x = bossX + 40
+		this.y = bossY - 10
 
 		this.img = new Image()
 		this.img.src = 'assets/boss_bombs.png'
@@ -19,7 +19,7 @@ class Bomb {
 		this.h = 50
 
 		this.vx = 0
-		this.vy = 5
+		this.vy = 3
 	}
 
 	draw(frameCounter) {

@@ -49,13 +49,13 @@ const Game = {
 				this.generateEnemy()	
 			}
 
-			if (this.frameCounter % 50 === 0) {
+			if (this.frameCounter % 100 === 0) {
 				this.boss.move()	
 			}
 
 			this.drawAll()
 			this.moveAll()
-			this.MoveBackground()
+	
 
 			if (this.Collision()) {
 				
@@ -72,6 +72,8 @@ const Game = {
 				// this.Winner()
 			}
 
+			this.Collision4()
+
 
 			this.clearEnemies()
 
@@ -83,19 +85,20 @@ const Game = {
 		this.background.draw()
 		this.boss.draw(this.frameCounter)
 		this.player.draw(this.frameCounter)
-		this.enemies.forEach((enemy) => {
-			enemy.draw(this.frameCounter)	
-	})
+	// 	this.enemies.forEach((enemy) => {
+	// 		enemy.draw(this.frameCounter)	
+	// })
 },
 
 	moveAll() {
 		this.background.move()
-		this.enemies.forEach((enemy) => {
-			enemy.move()
-		})
+		// this.enemies.forEach((enemy) => {
+		// 	enemy.move()
+		// })
 		
 		this.player.move()
 		this.boss.move() 
+		// this.MoveBackground()
 		
 	},
 
@@ -188,6 +191,29 @@ const Game = {
 				
 				})},
 
+				Collision4: function () {
+					return this.boss.bombs.some(
+						(bombs) => {
+							
+							const Collision =	
+							bombs.x < this.player.x + this.player.w &&
+							bombs.x + bombs.w > this.player.x &&
+							bombs.y + bombs.h > this.player.y &&
+							bombs.y  < this.player.y + this.player.h
+		
+							if (Collision) {
+								this.boss.bombs = this.boss.bombs.filter((b) => b !== bombs)
+								
+								
+								
+							}
+		
+					
+						
+						return Collision
+						
+						})},
+
 		MoveBackground: function() {
 
 				
@@ -196,7 +222,7 @@ const Game = {
 			
 				this.background.x -= this.player.vx;
 			}
-					
+			
 				},
 	
 
