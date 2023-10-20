@@ -1,10 +1,10 @@
 class Background {
-	constructor(ctx, canvasW, canvasH, player) {
+	constructor(ctx, canvasW, canvasH) {
 		this.ctx = ctx
 		this.canvasW = canvasW
 		this.canvasH = canvasH
 
-		this.player = player
+		
 		
 
 		this.img = new Image()
@@ -22,8 +22,7 @@ class Background {
 
 	move() {
 		
-
-		
-	
-	}
-}
+		if (this.x <= -this.canvasW) {
+		  this.x = 0;
+		}
+	  }}

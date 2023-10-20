@@ -92,13 +92,14 @@ const Game = {
 
 	moveAll() {
 		this.background.move()
+		this.MoveBackground()
 		this.enemies.forEach((enemy) => {
 			enemy.move()
 		})
 		
 		this.player.move()
 		// this.boss.move() 
-		// this.MoveBackground()
+		
 		
 	},
 
@@ -223,7 +224,7 @@ const Game = {
 					
 			if (this.player.x >= this.canvasW / 2) {
 			
-				this.background.x -= this.player.vx;
+				this.background.x -= this.player.vx + 10;
 			}
 			
 				},
@@ -236,6 +237,7 @@ const Game = {
 	},
 
 	clear: function () {
+		console.log('Clearing the canvas');
 		this.ctx.clearRect(0, 0, this.canvasW, this.canvasH)
 	}
 

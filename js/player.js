@@ -211,11 +211,6 @@ class Player {
 			}
 		}
 
-		// const mitadCanvas = this.canvasW / 2 - this.w / 2;
-		// if (this.x >= mitadCanvas && this.x <= mitadCanvas + 5) {
-		// 	this.actions.right = false;
-		// 	this.x = mitadCanvas;
-		// }
 		
 	}
 
