@@ -161,7 +161,9 @@ const Game = {
 					
 				}
 
+			
 				return Collision
+				
 			}
 			)
 			

@@ -4,16 +4,16 @@ class Enemy {
 		this.canvasW = canvasW
 
 		this.img = new Image()
-		this.img.src = "assets/walk2.png"
+		this.img.src = "assets/enemy_run.png"
 
-		this.w = 80
-		this.h = 140
+		this.w = 100
+		this.h = 100
 
 		this.img.frameIndex = 0
-		this.img.frames = 7
+		this.img.frames = 6
 
 		this.x = canvasW
-		this.y = playerY + playerH - this.h -30
+		this.y = playerY + playerH - this.h - 40
 
 		this.dx = 4
 	}
@@ -39,10 +39,12 @@ class Enemy {
 	}
 
 	attack() {
-		this.img.src = 'assets/punch.png'
+		this.img.src = 'assets/enemy_punch.png'
 		this.img.frames = 4
-		
-		this.img.frameIndex = 0
+
+		this.w = 115
+		this.h = 115
+
 		
 
 		

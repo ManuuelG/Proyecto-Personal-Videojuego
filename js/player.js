@@ -23,7 +23,7 @@ class Player {
 		
 
 		this.w = 150
-		this.h = 190
+		this.h = 160
 
 		this.bullets = []
 		this.bullets2 = []
@@ -33,6 +33,8 @@ class Player {
 			shot: false,
 			right: false,
 			left: false,
+			dying: false,
+			dead: false,
 		}
 
 		this.setControls()
@@ -161,8 +163,25 @@ class Player {
 			this.img.frameIndex++
 
 			if (this.img.frameIndex >= this.img.frames) {
-				this.img.frameIndex = 0
+				
+				if (this.actions.dying) {
+					this.img.frameIndex = 16
+					// this.actions.dead = true
+					
+					
+				} else {this.img.frameIndex = 0
+				}
+				
+			
+			
+			
+			
+			
+			
+			
+			
 			}
+
 		}
 	}
 
@@ -203,9 +222,10 @@ class Player {
 	die() {
 		this.img.src = 'assets/player_die.png'
 		this.img.frames = 17
-		
-		
+		this.actions.dying = true
 
 
 	}
+
+	
 }
