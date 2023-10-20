@@ -83,21 +83,21 @@ const Game = {
 
 	drawAll() {
 		this.background.draw()
-		this.boss.draw(this.frameCounter)
+		// this.boss.draw(this.frameCounter)
 		this.player.draw(this.frameCounter)
-	// 	this.enemies.forEach((enemy) => {
-	// 		enemy.draw(this.frameCounter)	
-	// })
+		this.enemies.forEach((enemy) => {
+			enemy.draw(this.frameCounter)	
+	})
 },
 
 	moveAll() {
 		this.background.move()
-		// this.enemies.forEach((enemy) => {
-		// 	enemy.move()
-		// })
+		this.enemies.forEach((enemy) => {
+			enemy.move()
+		})
 		
 		this.player.move()
-		this.boss.move() 
+		// this.boss.move() 
 		// this.MoveBackground()
 		
 	},
@@ -135,6 +135,7 @@ const Game = {
 				enemy.y < this.player.y + this.player.h
 
 				if (Collision) {
+					
 			    enemy.attack()
 				this.player.die()
 				}

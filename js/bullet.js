@@ -24,14 +24,14 @@ class Bullet {
 	draw(frameCounter) {
 		this.ctx.drawImage(
 		this.img,
-		this.img.frameIndex * (this.img.width / this.img.frames), // sx
+		this.img.frameIndex * (this.img.width / this.img.frames), 
 			0, //sy
-			this.img.width / this.img.frames, //swidth
-			this.img.height, //sheight
-			this.x, //dx
-			this.y, //dy
-			this.w, //dwidth
-			this.h //dweight
+			this.img.width / this.img.frames,
+			this.img.height,
+			this.x, 
+			this.y, 
+			this.w, 
+			this.h 
 			)
 			
 			

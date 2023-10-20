@@ -4,16 +4,16 @@ class Enemy {
 		this.canvasW = canvasW
 
 		this.img = new Image()
-		this.img.src = "assets/enemy_walk.png"
+		this.img.src = "assets/walk2.png"
 
-		this.w = 100
+		this.w = 80
 		this.h = 140
 
 		this.img.frameIndex = 0
 		this.img.frames = 7
 
 		this.x = canvasW
-		this.y = playerY + playerH - this.h - 20
+		this.y = playerY + playerH - this.h -30
 
 		this.dx = 4
 	}
@@ -21,14 +21,14 @@ class Enemy {
 	draw(frameCounter) {
 		this.ctx.drawImage(
 			this.img,
-			this.img.frameIndex * (this.img.width / this.img.frames), // sx
+			this.img.frameIndex * (this.img.width / this.img.frames),
 				0, //sy
-				this.img.width / this.img.frames, //swidth
-				this.img.height, //sheight
-				this.x, //dx
-				this.y, //dy
-				this.w, //dwidth
-				this.h //dweight
+				this.img.width / this.img.frames, 
+				this.img.height, 
+				this.x, 
+				this.y, 
+				this.w, 
+				this.h 
 				)
 				this.animateSprite(frameCounter)
 	}
@@ -39,11 +39,10 @@ class Enemy {
 	}
 
 	attack() {
-		this.img.src = 'assets/melee2.png'
-		this.img.frameIndex = 0
+		this.img.src = 'assets/punch.png'
 		this.img.frames = 4
-		this.w = 100
-		this.h = 140
+		
+		this.img.frameIndex = 0
 		
 
 		
