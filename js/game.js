@@ -30,6 +30,7 @@ const Game = {
 		
 		this.background = new Background(this.ctx, this.canvasW, this.canvasH)
 		this.player = new Player(this.ctx, this.canvasW, this.canvasH, this.keys, this.hit = 1)
+		this.boss = null
 		this.enemies = []
 		this.enemies2 = []
 
