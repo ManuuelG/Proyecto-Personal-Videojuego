@@ -27,6 +27,7 @@ class Boss {
 		this.bombDropInterval = 3000;
 		this.lastBombDropTime = Date.now();
 
+		console.log('HOLAA')
 		
 	}
 

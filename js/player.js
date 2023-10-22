@@ -49,7 +49,7 @@ class Player {
 
 					if (this.y === this.y0) {
 						this.y = this.y0 - 1
-						this.vy = -10
+						this.vy = -12
 					}
 
 					break
