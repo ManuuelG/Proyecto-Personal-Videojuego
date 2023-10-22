@@ -30,7 +30,6 @@ const Game = {
 		
 		this.background = new Background(this.ctx, this.canvasW, this.canvasH)
 		this.player = new Player(this.ctx, this.canvasW, this.canvasH, this.keys, this.hit = 1)
-		this.boss = null
 		this.enemies = []
 		this.enemies2 = []
 
@@ -63,7 +62,7 @@ const Game = {
 				this.generateEnemy2();	
 			}
 
-			if (!this.boss && this.frameCounter % 2400 === 0) {
+			if (!this.boss && this.frameCounter % 1800 === 0) {
 				this.boss = new Boss(this.ctx, this.canvasW, (this.canvasH - this.player.y0) - 150, this.player.h, this.life = 3)
 				
 			}
@@ -233,7 +232,7 @@ this.scoreboard.update(this.score)
 					if (this.boss.life <= 0) {
 						this.boss.defeat()
 						this.player.win()
-						setTimeout(() => this.Winner(), 2000)
+						setTimeout(() => this.Winner(), 1000)
 					}
 				
 				return Collision

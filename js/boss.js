@@ -19,7 +19,6 @@ class Boss {
 
 		this.dx = 3
 
-		this.bombSound = 'assets/bomb_drop.wav'
 
 		this.direction = -1 
 
@@ -82,7 +81,6 @@ class Boss {
 		this.bombs.push(
 			new Bomb(this.ctx, this.x, this.w, this.y, this.h)
 		)
-		this.bombSound.play()
 	}
 
 
