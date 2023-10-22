@@ -4,7 +4,7 @@ class Enemy2 {
 		this.canvasW = canvasW
 
 		this.img = new Image()
-		this.img.src = "assets/enemy2_walk.png"
+		this.img.src = "assets/tyra_walk.png"
 
 		this.w = 120
 		this.h = 100

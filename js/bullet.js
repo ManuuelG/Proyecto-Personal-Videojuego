@@ -6,7 +6,7 @@ class Bullet {
 		this.y = playerY
 
 		this.img = new Image()
-		this.img.src = 'assets/fuego.png'
+		this.img.src = 'assets/fire.png'
 		
 
 		this.img.frameIndex = 0

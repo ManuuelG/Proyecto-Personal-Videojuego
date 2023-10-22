@@ -7,7 +7,7 @@ class Player {
 		this.hit = hit
 
 		this.img = new Image()
-		this.img.src = 'assets/quieto.png'
+		this.img.src = 'assets/idle.png'
 
 
 		this.img.frameIndex = 0
@@ -56,7 +56,7 @@ class Player {
 
 					case this.keys.RIGHT:
 					this.actions.right = true
-					this.img.src = 'assets/palante.png'
+					this.img.src = 'assets/player_move_forward.png'
 					this.img.frames = 5
 				
 					
@@ -65,7 +65,7 @@ class Player {
 
 					case this.keys.LEFT:
 					this.actions.left = true
-					this.img.src = 'assets/patras.png'
+					this.img.src = 'assets/player_move_back.png'
 					this.img.frames = 5
 					
 					break
@@ -81,7 +81,7 @@ class Player {
 
 				case this.keys.SHOT:
 					this.actions.shot = true
-					this.img.src = 'assets/disparo.png'
+					this.img.src = 'assets/shot.png'
 					this.img.frames = 6
 					this.shot()
 
@@ -93,27 +93,27 @@ class Player {
 			switch (event.code) {
 				case this.keys.SHOT:
 					this.actions.shot = false
-					this.img.src = 'assets/quieto.png'
+					this.img.src = 'assets/idle.png'
 					this.img.frames = 5
 					break
 
 					case this.keys.RIGHT:
 					this.actions.right = false
-					this.img.src = 'assets/quieto.png'
+					this.img.src = 'assets/idle.png'
 					this.img.frames = 5
 
 					break
 
 					case this.keys.LEFT:
 					this.actions.left = false
-					this.img.src = 'assets/quieto.png'
+					this.img.src = 'assets/idle.png'
 					this.img.frames = 5
 
 					break
 
 					case this.keys.UP:
 					this.actions.up = false
-					this.img.src = 'assets/quieto.png'
+					this.img.src = 'assets/idle.png'
 					this.img.frames = 5
 			}
 		})
