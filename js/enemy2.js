@@ -9,6 +9,8 @@ class Enemy2 {
 		this.w = 120
 		this.h = 100
 
+		this.shotSound = new Audio ('assets/shotgun_shot.wav')
+
 		this.img.frameIndex = 0
 		this.img.frames = 12
 
@@ -74,6 +76,8 @@ class Enemy2 {
         if (this.recharge) return
 
 		this.recharge = true 
+		this.shotSound.play()
+		this.shotSound.volume = 0.2
 
 		this.bullets3.push(
 			new bullet3 (this.ctx, this.x + this.w - 150 , this.y + 20, this.h)

@@ -18,6 +18,10 @@ const Game = {
 		this.canvasW = canvas.width = innerWidth
 		this.canvasH = canvas.height = innerHeight
 
+		this.bso = new Audio('assets/bso.mp3')
+		this.bso.volume = 0.5
+		this.bso.play()
+
 		this.reset()
 	},
 

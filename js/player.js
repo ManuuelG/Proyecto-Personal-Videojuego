@@ -9,6 +9,8 @@ class Player {
 		this.img = new Image()
 		this.img.src = 'assets/idle.png'
 
+		this.shotSound = new Audio ('assets/shotgun_shot.wav')
+
 
 		this.img.frameIndex = 0
 		this.img.frames = 5
@@ -75,6 +77,8 @@ class Player {
 					this.img.src = 'assets/up.png'
 					this.img.frames = 6
 					this.shot2()
+					this.shotSound.play()
+					this.shotSound.volume = 0.2
 					
 
 					break
@@ -84,6 +88,9 @@ class Player {
 					this.img.src = 'assets/shot.png'
 					this.img.frames = 6
 					this.shot()
+					this.shotSound.play()
+					this.shotSound.volume = 0.2
+					
 
 			
 			}
