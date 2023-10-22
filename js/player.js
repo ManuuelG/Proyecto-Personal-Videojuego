@@ -27,6 +27,7 @@ class Player {
 
 		this.bullets = []
 		this.bullets2 = []
+		this.recharge = false
 
 		this.actions = {
 			jump: false,
@@ -147,15 +148,29 @@ class Player {
 	}
 
 	shot() {
+
+		if (this.recharge) return
+
+		this.recharge = true 
+
 		this.bullets.push(
 			new Bullet(this.ctx, this.x + this.w, this.y0 + 60, this.y, this.h)
 		)
+
+		setTimeout(() => (this.recharge = false), 500)
 	}
 
 	shot2() {
+
+		if (this.recharge) return
+
+		this.recharge = true
+
 		this.bullets2.push(
 			new Bullet2(this.ctx, this.x + this.w / 2, this.y0, this.y, this.h)
 		)
+
+		setTimeout(() => (this.recharge = false), 500)
 	}
 
 	animateSprite(frameCounter) {
@@ -172,12 +187,6 @@ class Player {
 				} else {this.img.frameIndex = 0
 				}
 				
-			
-			
-			
-			
-			
-			
 			
 			
 			}
@@ -210,8 +219,7 @@ class Player {
 				this.x = 0
 			}
 		}
-
-		
+	
 	}
 
 	die() {

@@ -2,6 +2,7 @@ const Game = {
 	ctx: undefined,
 	canvasW: undefined,
 	canvasH: undefined,
+	scoreboard: ScoreBoard,
 	fps: 60,
 	keys: {
 		JUMP: 'Space',
@@ -22,12 +23,17 @@ const Game = {
 	},
 
 	reset: function () {
-		console.log('RESET')
+		
 		
 		this.background = new Background(this.ctx, this.canvasW, this.canvasH)
 		this.player = new Player(this.ctx, this.canvasW, this.canvasH, this.keys, this.hit = 1)
-		this.boss = new Boss(this.ctx, this.canvasW, (this.canvasH - this.player.y0) - 150, this.player.h, this.life = 3, this.visible)
+		this.boss = new Boss(this.ctx, this.canvasW, (this.canvasH - this.player.y0) - 150, this.player.h, this.life = 5)
 		this.enemies = []
+		this.enemies2 = []
+
+		this.score = 0
+
+		this.scoreboard.init(this.ctx)
 		
 
 
@@ -45,49 +51,55 @@ const Game = {
 			this.frameCounter++
 
 			
-			if (this.frameCounter % 100 === 0) {
+
+			
+			if (this.frameCounter % 120 === 0) {
 				this.generateEnemy()	
 			}
 
-			if (this.frameCounter % 100 === 0) {
+			if (this.frameCounter % 500 === 0) {
+				this.generateEnemy2()	
+			}
+
+			if (this.frameCounter % 1000 === 0) {
 				this.boss.move()	
 			}
 
 			this.drawAll()
 			this.moveAll()
 	
+			this.Collision()
 
-			if (this.Collision()) {
-				
-			}
+			this.Collision2()
 
-			
-
-			if (this.Collision2()) {
-				
-			}
-
-			if (this.Collision3()) {
-				
-				// this.Winner()
-			}
+			this.Collision3()
 
 			this.Collision4()
+
+			this.Collision5()
+
+			this.Collision6()
 
 
 			this.clearEnemies()
 
-			console.log(this.enemies)
+			
 		}, 1000 / this.fps)
 	},
 
 	drawAll() {
 		this.background.draw()
-		// this.boss.draw(this.frameCounter)
+		this.boss.draw(this.frameCounter)
 		this.player.draw(this.frameCounter)
 		this.enemies.forEach((enemy) => {
 			enemy.draw(this.frameCounter)	
 	})
+
+	this.enemies2.forEach((enemy2) => {
+		enemy2.draw(this.frameCounter)	
+})
+
+this.scoreboard.update(this.score)
 },
 
 	moveAll() {
@@ -96,9 +108,12 @@ const Game = {
 		this.enemies.forEach((enemy) => {
 			enemy.move()
 		})
+		this.enemies2.forEach((enemy2) => {
+			enemy2.move()
+		})
 		
 		this.player.move()
-		// this.boss.move() 
+		this.boss.move() 
 		
 		
 	},
@@ -125,6 +140,16 @@ const Game = {
 		)
 	},
 
+
+	generateEnemy2: function () {
+		this.enemies2.push(
+			new Enemy2 (this.ctx, this.canvasW, this.player.y0, this.player.h)
+		)
+	},
+
+	
+
+
 	Collision: function () {
 		return this.enemies.some(
 			(enemy) =>
@@ -139,6 +164,7 @@ const Game = {
 					
 			    enemy.attack()
 				this.player.die()
+				setTimeout(() => this.gameOver(), 1000)
 				}
 				
 					return Collision
@@ -159,6 +185,9 @@ const Game = {
 				if (Collision) {
 					this.enemies = this.enemies.filter((e) => e !== enemy)
 					this.player.bullets = this.player.bullets.filter((b) => b !== bullet)
+
+					this.score += 10;
+           			this.scoreboard.update(this.score)
 					
 				}
 
@@ -185,9 +214,10 @@ const Game = {
 						this.boss.life -= this.player.hit
 						
 						
+						
 					}
-
-					if (this.boss.life -= this.player.hit < 0) {
+					
+					if (this.boss.life <= 0) {
 						this.boss.defeat()
 					}
 				
@@ -207,6 +237,8 @@ const Game = {
 		
 							if (Collision) {
 								this.boss.bombs = this.boss.bombs.filter((b) => b !== bombs)
+								this.player.die()
+								setTimeout(() => this.gameOver(), 1000)
 								
 								
 								
@@ -218,13 +250,58 @@ const Game = {
 						
 						})},
 
+						Collision5: function () {
+							return this.enemies2.some((enemy) => {
+								return enemy.bullets3.some((bullets3) => {
+									const Collision =
+										bullets3.x < this.player.x + this.player.w &&
+										bullets3.x + bullets3.w > this.player.x &&
+										bullets3.y + bullets3.h > this.player.y &&
+										bullets3.y < this.player.y + this.player.h;
+						
+									if (Collision) {
+									
+										enemy.bullets3 = enemy.bullets3.filter((b) => b !== bullets3);
+										this.player.die()
+									}
+						
+									return Collision;
+								});
+							});
+						},
+
+						Collision6: function () {
+							return this.enemies2.some((enemy2) => this.player.bullets.some((bullet) => {
+									
+								const Collision = enemy2.x  < bullet.x + bullet.w
+								enemy2.x + enemy2.w > bullet.x 
+								enemy2.y + enemy2.h > bullet.y 
+								enemy2.y < bullet.y + bullet.h
+					
+									if (Collision) {
+										this.enemies2 = this.enemies2.filter((e) => e !== enemy2)
+										this.player.bullets = this.player.bullets.filter((b) => b !== bullet)
+
+										this.score += 20;
+            							this.scoreboard.update(this.score)
+										
+									}
+					
+								
+									return Collision
+									
+								}
+								)
+								
+							)},
+
 		MoveBackground: function() {
 
 				
 					
 			if (this.player.x >= this.canvasW / 2) {
 			
-				this.background.x -= this.player.vx + 10;
+				this.background.x -= this.player.vx + 1;
 			}
 			
 				},
@@ -237,7 +314,6 @@ const Game = {
 	},
 
 	clear: function () {
-		console.log('Clearing the canvas');
 		this.ctx.clearRect(0, 0, this.canvasW, this.canvasH)
 	}
 

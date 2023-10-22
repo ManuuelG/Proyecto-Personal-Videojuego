@@ -1,8 +1,9 @@
 class Boss {
-	constructor(ctx, canvasW, playerY, playerH, life, visible) {
+	constructor(ctx, canvasW, playerY, playerH, life) {
 		this.ctx = ctx
 		this.canvasW = canvasW
 		this.life = life
+		this.remainlife = this.life
 
 		this.img = new Image()
 		this.img.src = "assets/boss.png"
@@ -18,9 +19,10 @@ class Boss {
 
 		this.dx = 5
 
+		this.direction = -1 
+
 		this.bombs = []
 
-		visible = true
 
 		this.bombDropInterval = 3000;
 		this.lastBombDropTime = Date.now();
@@ -31,14 +33,14 @@ class Boss {
 	draw(frameCounter) {
 		this.ctx.drawImage(
 			this.img,
-			this.img.frameIndex * (this.img.width / this.img.frames), // sx
-				0, //sy
-				this.img.width / this.img.frames, //swidth
-				this.img.height, //sheight
-				this.x, //dx
-				this.y, //dy
-				this.w, //dwidth
-				this.h //dweight
+			this.img.frameIndex * (this.img.width / this.img.frames), 
+				0, 
+				this.img.width / this.img.frames, 
+				this.img.height, 
+				this.x, 
+				this.y, 
+				this.w, 
+				this.h 
 				)
 				this.animateSprite(frameCounter)
 
@@ -65,18 +67,22 @@ class Boss {
 
 	move() {
 
-		if (this.x >= 1) 
-		{this.x -= this.dx}
+		this.x += this.dx * this.direction;
 
-		if (this.x < this.canvasW / 2) {
-			this.dx = 0
-		}
+    
+        if (this.x < 0) {
+            this.direction = 1; 
+        } else if (this.x > this.canvasW - this.w) {
+            this.direction = -1;
+        }
 		
 
 	}
 
 	defeat() {
-		this.visible = false
+		
+		this.x = -3000
+		this.y = -3000	
 	}
 
 	drop() {
