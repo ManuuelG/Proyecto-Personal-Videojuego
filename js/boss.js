@@ -3,7 +3,7 @@ class Boss {
 		this.ctx = ctx
 		this.canvasW = canvasW
 		this.life = life
-		this.remainlife = this.life
+		
 
 		this.img = new Image()
 		this.img.src = "assets/boss.png"
@@ -52,10 +52,6 @@ class Boss {
 				)
 				
 
-				if (Math.random() < 0.01) {
-					this.drop(); 
-					
-				  }
 
 				  const currentTime = Date.now();
 

@@ -230,5 +230,9 @@ class Player {
 
 	}
 
+	win() {
+		this.img.src = 'assets/win.png'
+		this.img.frames = 6
+	}
 	
 }

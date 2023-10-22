@@ -14,8 +14,8 @@ class bullet3 {
 
 		
 
-		this.w = 70
-		this.h = 70
+		this.w = 50
+		this.h = 50
 
 		this.vx = 10
 		

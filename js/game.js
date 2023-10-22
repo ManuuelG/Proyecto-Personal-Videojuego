@@ -27,7 +27,7 @@ const Game = {
 		
 		this.background = new Background(this.ctx, this.canvasW, this.canvasH)
 		this.player = new Player(this.ctx, this.canvasW, this.canvasH, this.keys, this.hit = 1)
-		this.boss = new Boss(this.ctx, this.canvasW, (this.canvasH - this.player.y0) - 150, this.player.h, this.life = 5)
+		this.boss = new Boss(this.ctx, this.canvasW, (this.canvasH - this.player.y0) - 150, this.player.h, this.life = 3)
 		this.enemies = []
 		this.enemies2 = []
 
@@ -214,11 +214,12 @@ this.scoreboard.update(this.score)
 						this.boss.life -= this.player.hit
 						
 						
-						
 					}
 					
 					if (this.boss.life <= 0) {
 						this.boss.defeat()
+						this.player.win()
+						setTimeout(() => this.Winner(), 2000)
 					}
 				
 				return Collision
@@ -263,6 +264,7 @@ this.scoreboard.update(this.score)
 									
 										enemy.bullets3 = enemy.bullets3.filter((b) => b !== bullets3);
 										this.player.die()
+										setTimeout(() => this.gameOver(), 1000)
 									}
 						
 									return Collision;
