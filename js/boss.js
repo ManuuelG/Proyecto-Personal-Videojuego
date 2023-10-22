@@ -17,7 +17,7 @@ class Boss {
 		this.x = canvasW
 		this.y = playerY + playerH - this.h
 
-		this.dx = 5
+		this.dx = 3
 
 		this.direction = -1 
 
@@ -26,8 +26,6 @@ class Boss {
 
 		this.bombDropInterval = 3000;
 		this.lastBombDropTime = Date.now();
-
-		console.log('HOLAA')
 		
 	}
 
@@ -48,11 +46,8 @@ class Boss {
 				this.bombs.forEach((bomb) => {
 					bomb.draw(frameCounter)
 					bomb.move()
-				
 				}
 				)
-				
-
 
 				  const currentTime = Date.now();
 
@@ -72,7 +67,6 @@ class Boss {
         } else if (this.x > this.canvasW - this.w) {
             this.direction = -1;
         }
-		
 
 	}
 

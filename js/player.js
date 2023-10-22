@@ -157,7 +157,7 @@ class Player {
 			new Bullet(this.ctx, this.x + this.w, this.y0 + 60, this.y, this.h)
 		)
 
-		setTimeout(() => (this.recharge = false), 500)
+		setTimeout(() => (this.recharge = false), 300)
 	}
 
 	shot2() {
@@ -170,7 +170,7 @@ class Player {
 			new Bullet2(this.ctx, this.x + this.w / 2, this.y0, this.y, this.h)
 		)
 
-		setTimeout(() => (this.recharge = false), 500)
+		setTimeout(() => (this.recharge = false), 300)
 	}
 
 	animateSprite(frameCounter) {
@@ -187,8 +187,6 @@ class Player {
 				} else {this.img.frameIndex = 0
 				}
 				
-			
-			
 			}
 
 		}

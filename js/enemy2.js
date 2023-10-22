@@ -61,8 +61,7 @@ class Enemy2 {
         if (this.x < this.canvasW - this.w) {
             this.x = this.canvasW - this.w
         }
-
-        
+ 
 
 	}
 
@@ -80,7 +79,7 @@ class Enemy2 {
 			new bullet3 (this.ctx, this.x + this.w - 150 , this.y + 20, this.h)
 		)
 
-		setTimeout(() => (this.recharge = false), 5000)	
+		setTimeout(() => (this.recharge = false), 4000)	
 	}
 
 	animateSprite(frameCounter) {

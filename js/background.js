@@ -5,8 +5,6 @@ class Background {
 		this.canvasH = canvasH
 
 		
-		
-
 		this.img = new Image()
 		this.x = 0
 		this.dx = 10
@@ -25,4 +23,5 @@ class Background {
 		if (this.x <= -this.canvasW) {
 		  this.x = 0;
 		}
-	  }}
+	  }
+	}

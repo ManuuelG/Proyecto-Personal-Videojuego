@@ -18,7 +18,6 @@ const Game = {
 		this.canvasW = canvas.width = innerWidth
 		this.canvasH = canvas.height = innerHeight
 
-
 		this.reset()
 	},
 
@@ -38,6 +37,7 @@ const Game = {
 
 
 		this.start()
+
 	},
 
 	start: function () {
@@ -51,17 +51,15 @@ const Game = {
 			this.frameCounter++
 
 			
-
-			
 			if (this.frameCounter % 200 === 0) {
 				this.generateEnemy();
 			}
 
-			if (this.frameCounter % 500 === 0) {
+			if (this.frameCounter % 600 === 0) {
 				this.generateEnemy2();	
 			}
 
-			if (!this.boss && this.frameCounter % 3600 === 0) {
+			if (!this.boss && this.frameCounter % 2400 === 0) {
 				this.boss = new Boss(this.ctx, this.canvasW, (this.canvasH - this.player.y0) - 150, this.player.h, this.life = 3)
 				
 			}
@@ -76,7 +74,7 @@ const Game = {
 			this.Collision3()
 
 			if (this.boss) {
-				this.Collision4()
+			this.Collision4()
 			}
 
 			this.Collision5()
@@ -106,21 +104,26 @@ const Game = {
 })
 
 this.scoreboard.update(this.score)
+
 },
 
 	moveAll() {
 		this.background.move()
+
 		this.MoveBackground()
+
 		this.enemies.forEach((enemy) => {
 			enemy.move()
 		})
+
 		this.enemies2.forEach((enemy2) => {
 			enemy2.move()
 		})
 		
 		this.player.move()
 		
-		if (this.boss) {this.boss.move()
+		if (this.boss)
+		{this.boss.move()
 		}
 		
 		
@@ -157,7 +160,6 @@ this.scoreboard.update(this.score)
 
 	
 
-
 	Collision: function () {
 		return this.enemies.some(
 			(enemy) =>
@@ -171,8 +173,8 @@ this.scoreboard.update(this.score)
 				if (Collision) {
 					
 			    enemy.attack()
-				// this.player.die()
-				// setTimeout(() => this.gameOver(), 1000)
+				this.player.die()
+				setTimeout(() => this.gameOver(), 1000)
 				}
 				
 					return Collision
@@ -246,8 +248,8 @@ this.scoreboard.update(this.score)
 		
 							if (Collision) {
 								this.boss.bombs = this.boss.bombs.filter((b) => b !== bombs)
-								// this.player.die()
-								// setTimeout(() => this.gameOver(), 1000)
+								this.player.die()
+								setTimeout(() => this.gameOver(), 1000)
 								
 								
 								
@@ -271,8 +273,8 @@ this.scoreboard.update(this.score)
 									if (Collision) {
 									
 										enemy.bullets3 = enemy.bullets3.filter((b) => b !== bullets3);
-										// this.player.die()
-										// setTimeout(() => this.gameOver(), 1000)
+										this.player.die()
+										setTimeout(() => this.gameOver(), 1000)
 									}
 						
 									return Collision;
@@ -302,8 +304,7 @@ this.scoreboard.update(this.score)
 									
 								}
 								)
-								
-							)},
+								)},
 
 		MoveBackground: function() {
 

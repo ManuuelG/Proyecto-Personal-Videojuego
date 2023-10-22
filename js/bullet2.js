@@ -36,7 +36,6 @@ class Bullet2 {
 			)
 			
 			
-			
 			this.animateSprite(frameCounter)
 	}
 	move() {
@@ -53,10 +52,7 @@ class Bullet2 {
 		
 			if (this.img.frameIndex >= this.img.frames) {
 				this.img.frameIndex = 0
-			}
-	
-	
-		
+			}	
 			
 }}
 }

@@ -15,7 +15,7 @@ class Enemy {
 		this.x = canvasW
 		this.y = playerY + playerH - this.h - 40
 
-		this.dx = 4
+		this.dx = 2
 	}
 
 	draw(frameCounter) {
@@ -44,8 +44,6 @@ class Enemy {
 
 		this.w = 115
 		this.h = 115
-
-		
 
 		
 	}
